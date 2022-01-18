@@ -1,13 +1,22 @@
-package com.test.javatestsv.Entity;
+package com.test.javatestsv.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name ="category",schema="testdb")
+@NoArgsConstructor(force = true)
 @Data
 public class Category {
-
+  @Id
+  @Column(name="id")
   private long id;
+
   private String header;
   private String description;
+  @Column(name="picture_name")
   private String pictureName;
 
 
