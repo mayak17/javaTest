@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -39,7 +40,7 @@ public class MainController {
         try {
             Article result = this.articleService.getOneArticle(id);
             return ResponseEntity.ok(result);
-        } catch (IOException e) {
+        } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

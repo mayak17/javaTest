@@ -2,10 +2,9 @@ package com.test.javatestsv.services;
 
 import com.test.javatestsv.DAO.ArticleDAO;
 import com.test.javatestsv.entity.Article;
-import com.test.javatestsv.entity.Category;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
+
 import java.util.List;
 
 @Service
@@ -21,7 +20,8 @@ public class ArticleService {
             return this.articleDAO.getAll();
         }
 
-    public Article getOneArticle(int id) throws IOException {
+    public Article getOneArticle(int id) throws NullPointerException {
         return this.articleDAO.getById(id);
     }
-    }
+
+}
