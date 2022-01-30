@@ -10,9 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -36,12 +35,11 @@ public class MainController {
         return ResponseEntity.ok(allArticles);
     }
     @GetMapping("/article/{id}")
-    public ResponseEntity<Article> getOneArticleById(@PathVariable int id){
-        try {
-            Article result = this.articleService.getOneArticle(id);
-            return ResponseEntity.ok(result);
-        } catch (NullPointerException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Article> getOneArticleById(@PathVariable String id){
+            Optional<Article> result = this.articleService.getOneArticle(id);
+            if (result.isPresent())
+                return ResponseEntity.ok(result.get());
+            else
+                return ResponseEntity.badRequest().build();
     }
 }

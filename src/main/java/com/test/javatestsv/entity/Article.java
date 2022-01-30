@@ -1,25 +1,17 @@
 package com.test.javatestsv.entity;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="article")
-@NoArgsConstructor(force = true)
+@Document(collection = "articles")
 @Data
 public class Article {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name="id")
-  private long id;
-  @Column(name="header_article")
-  private String header_article;
+  private String id;
+  private String header;
   private String description;
-  @Column(name="picture_name")
-  private String picture_name;
-  @Column(name="id_category")
-  private long id_category;
-
+  private String pictureName;
+  private String categoryId;
 }

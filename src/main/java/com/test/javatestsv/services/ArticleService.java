@@ -1,27 +1,27 @@
 package com.test.javatestsv.services;
 
 import com.test.javatestsv.DAO.ArticleDAO;
+import com.test.javatestsv.DAO.ArticleRepository;
 import com.test.javatestsv.entity.Article;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ArticleService {
 
-    private ArticleDAO articleDAO;
-
-    public ArticleService(ArticleDAO articleDAO) {
-        this.articleDAO = articleDAO;
-    }
+    private ArticleRepository articleRepository;
 
     public List<Article> getAllArticles() {
-            return this.articleDAO.getAll();
+            return this.articleRepository.findAll();
         }
 
-    public Article getOneArticle(int id) throws NullPointerException {
-        return this.articleDAO.getById(id);
+    public Optional<Article> getOneArticle(String id) {
+        return this.articleRepository.findById(id);
     }
 
 }
